@@ -20,7 +20,7 @@ RUN mkdir -p $APP_PATH && \
     cd zk-web && \
     lein deps && \
     cd .. && \
-    rm $CONFIG_FILE
+    rm -f /app/zk-web/conf/zk-web-conf.clj
 
 USER 48
 
