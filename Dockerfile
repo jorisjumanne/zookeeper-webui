@@ -1,16 +1,24 @@
-FROM jeanblanchard/java:latest
+FROM 192.168.173.195:5000/openshift/s2i-oracle-java-dev-rhel:latest
 MAINTAINER tobilg <fb.tools.github@gmail.com>
 
-ENV APP_PATH /app
-ENV CONFIG_FILE $APP_PATH/zk-web/conf/zk-web-conf.clj
-ENV LEIN_ROOT true
+USER 0
 
-ADD install.sh .
-ADD bootstrap.sh .
+ENV APP_PATH    /app \
+    CONFIG_FILE $APP_PATH/zk-web/conf/zk-web-conf.clj \
+    LEIN_ROOT   true
 
-RUN chmod +x install.sh
-RUN chmod +x bootstrap.sh
+COPY *.sh .
 
-RUN ./install.sh
+RUN mkdir -p $APP_PATH \
+    yum install -y curl openssl \
+    curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein >/usr/local/bin/lein \
+    curl -sSL https://github.com/qiuxiafei/zk-web/archive/v1.0.zip |jar -C $APP_PATH -xvf /dev/stdin \
+    chmod a+rwX $APP_PATH \
+    chmod +x *.sh \
+    cd $APP_PATH/zk-web && \
+    lein deps \
+    rm $CONFIG_FILE
+
+USER 48
 
 CMD ["./bootstrap.sh"]
