@@ -1,6 +1,8 @@
 FROM docker-registry.apps.ota.ose.rabobank.nl/openshift/s2i-oracle-java-dev-rhel:latest
 MAINTAINER tobilg <fb.tools.github@gmail.com>
 
+EXPOSE 8080
+
 USER 0
 
 ENV APP_PATH=/app \
@@ -9,6 +11,7 @@ ENV APP_PATH=/app \
 
 WORKDIR $APP_PATH
 COPY *.sh .
+COPY *.properties $APP_PATH/zk-web/conf/
 
 RUN mkdir -p $APP_PATH && \
     yum install -y curl openssl && \
