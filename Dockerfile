@@ -9,14 +9,14 @@ ENV APP_PATH    /app \
 
 COPY *.sh .
 
-RUN mkdir -p $APP_PATH \
-    yum install -y curl openssl \
-    curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein >/usr/local/bin/lein \
-    curl -sSL https://github.com/qiuxiafei/zk-web/archive/v1.0.zip |jar -C $APP_PATH -xvf /dev/stdin \
-    chmod a+rwX $APP_PATH \
-    chmod +x *.sh \
+RUN mkdir -p $APP_PATH && \
+    yum install -y curl openssl && \
+    curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein >/usr/local/bin/lein && \
+    curl -sSL https://github.com/qiuxiafei/zk-web/archive/v1.0.zip |jar -C $APP_PATH -xvf /dev/stdin && \
+    chmod a+rwX $APP_PATH && \
+    chmod +x *.sh && \
     cd $APP_PATH/zk-web && \
-    lein deps \
+    lein deps && \
     rm $CONFIG_FILE
 
 USER 48
