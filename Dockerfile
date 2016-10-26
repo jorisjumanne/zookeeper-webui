@@ -11,7 +11,7 @@ ENV APP_PATH=/app \
 
 WORKDIR $APP_PATH
 COPY *.sh .
-COPY *.properties $APP_PATH/zk-web/conf/
+COPY log4j.properties $APP_PATH/zk-web/conf/
 
 RUN mkdir -p $APP_PATH && \
     yum install -y curl openssl && \
