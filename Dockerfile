@@ -11,7 +11,6 @@ ENV APP_PATH=/app \
 
 WORKDIR $APP_PATH
 COPY *.sh .
-COPY log4j.properties $APP_PATH/zk-web/conf/
 
 RUN mkdir -p $APP_PATH && \
     yum install -y curl openssl && \
@@ -24,6 +23,8 @@ RUN mkdir -p $APP_PATH && \
     cd .. && \
     rm -f $CONFIG_FILE && \
     chmod -R a+rwX .
+
+COPY log4j.properties $APP_PATH/zk-web/conf/
 
 USER 48
 
