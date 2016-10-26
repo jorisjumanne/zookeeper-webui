@@ -11,13 +11,14 @@ ENV APP_PATH=/app \
 
 WORKDIR $APP_PATH
 COPY *.sh .
+COPY log4j.properties $APP_PATH/
 
-RUN mkdir -p $APP_PATH && \
-    yum install -y curl openssl && \
+RUN yum install -y curl openssl && \
     curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein >/usr/local/bin/lein && \
     curl -sSL https://github.com/qiuxiafei/zk-web/archive/master.zip |jar -xvf /dev/stdin && \
     ln -s zk-web-* zk-web && \
     chmod +x *.sh /usr/local/bin/lein && \
+    mv log4j.properties zk-web/src && \
     cd zk-web && \
     lein deps && \
     cd .. && \
