@@ -13,7 +13,7 @@ COPY *.sh .
 RUN mkdir -p $APP_PATH && \
     yum install -y curl openssl && \
     curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein >/usr/local/bin/lein && \
-    curl -sSL https://github.com/qiuxiafei/zk-web/archive/v1.0.zip |jar -xvf /dev/stdin && \
+    curl -sSL https://github.com/qiuxiafei/zk-web/archive/master.zip |jar -xvf /dev/stdin && \
     ln -s zk-web-* zk-web && \
     chmod +x *.sh /usr/local/bin/lein && \
     cd zk-web && \
