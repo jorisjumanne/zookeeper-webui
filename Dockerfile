@@ -1,4 +1,4 @@
-FROM 192.168.173.195:5000/openshift/s2i-oracle-java-dev-rhel:latest
+FROM docker-registry.apps.ota.ose.rabobank.nl/openshift/s2i-oracle-java-dev-rhel:latest
 MAINTAINER tobilg <fb.tools.github@gmail.com>
 
 USER 0
