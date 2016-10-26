@@ -15,12 +15,12 @@ RUN mkdir -p $APP_PATH && \
     curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein >/usr/local/bin/lein && \
     curl -sSL https://github.com/qiuxiafei/zk-web/archive/v1.0.zip |jar -xvf /dev/stdin && \
     ln -s zk-web-* zk-web && \
-    chmod a+rwX . && \
     chmod +x *.sh /usr/local/bin/lein && \
     cd zk-web && \
     lein deps && \
     cd .. && \
-    rm -f $CONFIG_FILE
+    rm -f $CONFIG_FILE && \
+    chmod -R a+rwX .
 
 USER 48
 
