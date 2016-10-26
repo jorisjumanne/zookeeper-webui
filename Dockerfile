@@ -3,9 +3,9 @@ MAINTAINER tobilg <fb.tools.github@gmail.com>
 
 USER 0
 
-ENV APP_PATH    /app \
-    CONFIG_FILE $APP_PATH/zk-web/conf/zk-web-conf.clj \
-    LEIN_ROOT   true
+ENV APP_PATH=/app \
+    CONFIG_FILE=/app/zk-web/conf/zk-web-conf.clj \
+    LEIN_ROOT=true
 
 WORKDIR $APP_PATH
 COPY *.sh .
@@ -20,7 +20,7 @@ RUN mkdir -p $APP_PATH && \
     cd zk-web && \
     lein deps && \
     cd .. && \
-    rm -f /app/zk-web/conf/zk-web-conf.clj
+    rm -f $CONFIG_FILE
 
 USER 48
 
