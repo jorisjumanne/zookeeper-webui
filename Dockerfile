@@ -1,4 +1,4 @@
-FROM centos:7 
+FROM jeanblanchard/java:latest
 
 EXPOSE 8080
 
@@ -14,7 +14,7 @@ COPY log4j.properties $APP_PATH/
 
 RUN yum install -y curl openssl && \
     curl -sSL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > /usr/local/bin/lein && \
-    curl -sSL https://github.com/qiuxiafei/zk-web/archive/master.zip | tar -xvf /dev/stdin && \
+    curl -sSL https://github.com/qiuxiafei/zk-web/archive/master.zip | jar -xvf /dev/stdin && \
     ln -s zk-web-* zk-web && \
     chmod +x *.sh /usr/local/bin/lein && \
     mv log4j.properties zk-web/src && \
