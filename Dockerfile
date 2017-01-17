@@ -1,4 +1,4 @@
-FROM nimmis/java-centos:openjdk-8-jre-headless 
+FROM nimmis/java-centos:openjdk-8-jdk 
 
 EXPOSE 8080
 
