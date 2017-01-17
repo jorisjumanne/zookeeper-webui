@@ -1,5 +1,4 @@
-FROM docker-registry.apps.ota.ose.rabobank.nl/openshift/s2i-oracle-java-dev-rhel:latest
-MAINTAINER tobilg <fb.tools.github@gmail.com>
+FROM centos:7 
 
 EXPOSE 8080
 
