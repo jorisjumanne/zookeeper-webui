@@ -1,4 +1,4 @@
-FROM jeanblanchard/java:latest
+FROM nimmis/java-centos:openjdk-8-jre-headless 
 
 EXPOSE 8080
 
